@@ -1,36 +1,60 @@
-import { Product } from '../../types/product';
 import styled from 'styled-components';
+import { Product } from '../../types/product';
 
 const Card = styled.div`
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  width: 200px;
-  text-align: center;
-  transition: transform 0.2s;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+  width: 100%;
+  max-width: 300px;
 
   &:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   }
 `;
 
-const Image = styled.img`
-  max-width: 100%;
-  height: 150px;
-  object-fit: cover;
+const ImageContainer = styled.div`
+  height: 200px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const Button = styled.button`
-  background: #3498db;
+const Image = styled.img`
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+`;
+
+const Content = styled.div`
+  padding: 1.5rem;
+`;
+
+const Title = styled.h3`
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+`;
+
+const Price = styled.p`
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  margin: 0 0 1rem;
+`;
+
+const BuyButton = styled.button`
+  background: var(--secondary-color);
   color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  width: 100%;
   transition: background 0.3s;
 
   &:hover {
-    background: #2980b9;
+    background: #ff5252;
   }
 `;
 
@@ -42,10 +66,14 @@ type Props = {
 export const ProductCard = ({ product, onAddToCart }: Props) => {
   return (
     <Card>
-      <Image src={product.image} alt={product.title} />
-      <h3>{product.title}</h3>
-      <p>{product.price} ₽</p>
-      <Button onClick={onAddToCart}>Купить</Button>
+      <ImageContainer>
+        <Image src={product.image} alt={product.title} />
+      </ImageContainer>
+      <Content>
+        <Title>{product.title}</Title>
+        <Price>{product.price} ₽</Price>
+        <BuyButton onClick={onAddToCart}>Купить</BuyButton>
+      </Content>
     </Card>
   );
 };

@@ -1,3 +1,4 @@
+// src/components/CartItem/index.tsx
 import { Product } from '../../types/product';
 import styled from 'styled-components';
 
@@ -34,6 +35,11 @@ const Button = styled.button`
   color: #3498db;
 `;
 
+const DisabledButton = styled(Button)`
+  opacity: 0.5;
+  cursor: not-allowed;
+`;
+
 type Props = {
   product: Product;
   quantity: number;
@@ -57,7 +63,12 @@ export const CartItemComponent = ({
         </div>
       </Details>
       <QuantityControl>
-        <Button onClick={() => onUpdateQuantity(quantity - 1)}>-</Button>
+        <DisabledButton 
+          onClick={() => onUpdateQuantity(quantity - 1)}
+          disabled={quantity <= 1}
+        >
+          -
+        </DisabledButton>
         <span>{quantity}</span>
         <Button onClick={() => onUpdateQuantity(quantity + 1)}>+</Button>
         <Button onClick={onRemove}>×</Button>

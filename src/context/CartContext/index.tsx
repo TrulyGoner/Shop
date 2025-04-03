@@ -49,9 +49,14 @@ export const CartProvider = ({ children }: Props) => {
   };
 
   const updateQuantity = (productId: number, quantity: number) => {
-    setCartItems(prev =>
-      prev.map(item =>
-        item.productId === productId ? { ...item, quantity } : item
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.productId === productId
+          ? { 
+              ...item, 
+              quantity: Math.max(quantity, 1) // Минимум 1
+            }
+          : item
       )
     );
   };
