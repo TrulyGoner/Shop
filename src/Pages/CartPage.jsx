@@ -1,9 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import '../styles/CartPage.css';
 
 const CartPage = ({ cartItems, updateQuantity, removeFromCart, totalPrice }) => {
+  const navigate = useNavigate();
+  
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
+  
   return (
     <div className="cart-page container">
       <div className="cart-header">
@@ -39,7 +45,7 @@ const CartPage = ({ cartItems, updateQuantity, removeFromCart, totalPrice }) => 
               <span className="cart-total-label">ИТОГО</span>
               <span className="cart-total-value">₽ {totalPrice}</span>
             </div>
-            <button className="checkout-button">
+            <button className="checkout-button" onClick={handleCheckout}>
               Перейти к оформлению
             </button>
           </div>

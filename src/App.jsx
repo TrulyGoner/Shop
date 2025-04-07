@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CatalogPage from './pages/CatalogPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './styles/App.css';
@@ -61,6 +62,11 @@ function App() {
     setCartItems(cartItems.filter(item => item.id !== id));
   };
   
+  // Функция очистки корзины
+  const clearCart = () => {
+    setCartItems([]);
+  };
+  
   // Функция подсчета общего количества товаров в корзине
   const getTotalItemsCount = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -86,6 +92,16 @@ function App() {
                   updateQuantity={updateQuantity} 
                   removeFromCart={removeFromCart} 
                   totalPrice={getTotalPrice()}
+                />
+              } 
+            />
+            <Route 
+              path="/checkout" 
+              element={
+                <CheckoutPage 
+                  cartItems={cartItems} 
+                  totalPrice={getTotalPrice()} 
+                  clearCart={clearCart}
                 />
               } 
             />

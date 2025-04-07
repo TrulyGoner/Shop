@@ -1,13 +1,16 @@
 import React from 'react';
 import '../styles/ProductCard.css';
 
-const ProductCard = ({ product, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart, onShowDetails }) => {
   const { title, price, oldPrice, img, rating } = product;
   
   return (
     <div className="product-card">
       <div className="product-image">
         <img src={img} alt={title} />
+        <button className="view-details-button" onClick={() => onShowDetails(product)}>
+          <img src="/images/eye.svg" alt="View Details" />
+        </button>
       </div>
       <div className="product-details">
         <div className="product-info">
