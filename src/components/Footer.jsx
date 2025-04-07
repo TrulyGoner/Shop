@@ -23,10 +23,10 @@ const Footer = () => {
           </div>
         </div>
         <div className="social-links">
-          <a href="https://vk.com" target="_blank" rel="noopener noreferrer" className="social-link">
+          <a href="https://vk.com/neoflex_ru" target="_blank" rel="noopener noreferrer" className="social-link">
             <img src="/images/vk.svg" alt="VK" />
           </a>
-          <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" className="social-link">
+          <a href="https://t.me/neoflexcareers" target="_blank" rel="noopener noreferrer" className="social-link">
             <img src="/images/telegram.svg" alt="Telegram" />
           </a>
           <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="social-link">

@@ -54,13 +54,13 @@
   }
   
   .delete-button:hover img {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
   }
 
   .delete-button img {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
   }
 
   .cart-item-total-price {
