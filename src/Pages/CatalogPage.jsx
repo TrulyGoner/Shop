@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import Modal from '../components/Modal';
 import ProductDetail from '../components/ProductDetail';
+import { useLanguage } from '../context/LanguageContext';
 import { products } from '../data';
 import '../styles/CatalogPage.css';
 
 const CatalogPage = ({ addToCart }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
   
   // Разделение товаров по категориям
   const wiredHeadphones = products.filter(product => product.category === 'wired');
@@ -25,7 +27,7 @@ const CatalogPage = ({ addToCart }) => {
   return (
     <div className="catalog-page container">
       <section className="products-section">
-        <h2 className="section-title">Наушники</h2>
+        <h2 className="section-title">{t('headphones')}</h2>
         <div className="products-grid">
           {wiredHeadphones.map(product => (
             <ProductCard 
@@ -39,7 +41,7 @@ const CatalogPage = ({ addToCart }) => {
       </section>
       
       <section className="products-section">
-        <h2 className="section-title">Беспроводные наушники</h2>
+        <h2 className="section-title">{t('wirelessHeadphones')}</h2>
         <div className="products-grid">
           {wirelessHeadphones.map(product => (
             <ProductCard 

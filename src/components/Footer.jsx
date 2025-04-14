@@ -1,7 +1,10 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/Footer.css';
 
 const Footer = () => {
+  const { language, changeLanguage, t } = useLanguage();
+  
   return (
     <footer className="footer">
       <div className="container footer-container">
@@ -10,15 +13,25 @@ const Footer = () => {
         </div>
         <div className="footer-menu">
           <div className="footer-menu-column">
-            <a href="#" className="footer-link">Избранное</a>
-            <a href="#" className="footer-link">Корзина</a>
-            <a href="#" className="footer-link">Контакты</a>
+            <a href="#" className="footer-link">{t('favorites')}</a>
+            <a href="#" className="footer-link">{t('cart')}</a>
+            <a href="#" className="footer-link">{t('contacts')}</a>
           </div>
           <div className="footer-menu-column">
-            <a href="#" className="footer-link">Условия сервиса</a>
+            <a href="#" className="footer-link">{t('serviceTerms')}</a>
             <div className="language-selector">
-              <span className="language-item active">Рус</span>
-              <span className="language-item">Eng</span>
+              <span 
+                className={`language-item ${language === 'ru' ? 'active' : ''}`}
+                onClick={() => changeLanguage('ru')}
+              >
+                Рус
+              </span>
+              <span 
+                className={`language-item ${language === 'en' ? 'active' : ''}`}
+                onClick={() => changeLanguage('en')}
+              >
+                Eng
+              </span>
             </div>
           </div>
         </div>

@@ -1,9 +1,10 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/ProductCard.css';
-
 
 const ProductCard = ({ product, onAddToCart, onShowDetails }) => {
   const { title, price, oldPrice, img, rating } = product;
+  const { t } = useLanguage();
   
   return (
     <div className="product-card">
@@ -24,7 +25,7 @@ const ProductCard = ({ product, onAddToCart, onShowDetails }) => {
             <span>{rating}</span>
           </div>
           <button className="buy-button" onClick={() => onAddToCart(product)}>
-            Купить
+            {t('buy')}
           </button>
         </div>
       </div>

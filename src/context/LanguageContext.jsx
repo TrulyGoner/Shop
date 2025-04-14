@@ -18,6 +18,28 @@ export const translations = {
     // Названия категорий
     headphones: 'Наушники',
     wirelessHeadphones: 'Беспроводные наушники',
+    
+    // Оформление заказа
+    checkoutTitle: 'Оформление заказа',
+    backToCart: 'Вернуться в корзину',
+    contactInfo: 'Контактная информация',
+    fullName: 'ФИО',
+    phone: 'Телефон',
+    address: 'Адрес доставки',
+    paymentInfo: 'Платежная информация',
+    cardNumber: 'Номер карты',
+    cardHolder: 'Имя владельца',
+    expiry: 'Срок действия',
+    pay: 'Оплатить',
+    yourOrder: 'Ваш заказ',
+    quantity: 'Количество',
+    
+    // Валидация
+    requiredField: 'Требуется',
+    invalidEmail: 'Некорректный email',
+    invalidCard: 'Некорректный номер карты',
+    invalidFormat: 'Формат ММ/ГГ',
+    invalidCVV: 'Некорректный CVV',
   },
   en: {
     // Общие строки
@@ -35,6 +57,28 @@ export const translations = {
     // Названия категорий
     headphones: 'Headphones',
     wirelessHeadphones: 'Wireless Headphones',
+    
+    // Оформление заказа
+    checkoutTitle: 'Checkout',
+    backToCart: 'Back to cart',
+    contactInfo: 'Contact Information',
+    fullName: 'Full Name',
+    phone: 'Phone',
+    address: 'Delivery Address',
+    paymentInfo: 'Payment Information',
+    cardNumber: 'Card Number',
+    cardHolder: 'Card Holder',
+    expiry: 'Expiry Date',
+    pay: 'Pay',
+    yourOrder: 'Your Order',
+    quantity: 'Quantity',
+    
+    // Валидация
+    requiredField: 'Required',
+    invalidEmail: 'Invalid email',
+    invalidCard: 'Invalid card number',
+    invalidFormat: 'Format MM/YY',
+    invalidCVV: 'Invalid CVV',
   }
 };
 

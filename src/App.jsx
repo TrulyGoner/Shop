@@ -5,6 +5,7 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { LanguageProvider } from './context/LanguageContext';
 import './styles/App.css';
 
 function App() {
@@ -78,38 +79,40 @@ function App() {
   };
   
   return (
-    <Router>
-      <div className="app">
-        <Header cartCount={getTotalItemsCount()} />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<CatalogPage addToCart={addToCart} />} />
-            <Route 
-              path="/cart" 
-              element={
-                <CartPage 
-                  cartItems={cartItems} 
-                  updateQuantity={updateQuantity} 
-                  removeFromCart={removeFromCart} 
-                  totalPrice={getTotalPrice()}
-                />
-              } 
-            />
-            <Route 
-              path="/checkout" 
-              element={
-                <CheckoutPage 
-                  cartItems={cartItems} 
-                  totalPrice={getTotalPrice()} 
-                  clearCart={clearCart}
-                />
-              } 
-            />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <div className="app">
+          <Header cartCount={getTotalItemsCount()} />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<CatalogPage addToCart={addToCart} />} />
+              <Route 
+                path="/cart" 
+                element={
+                  <CartPage 
+                    cartItems={cartItems} 
+                    updateQuantity={updateQuantity} 
+                    removeFromCart={removeFromCart} 
+                    totalPrice={getTotalPrice()}
+                  />
+                } 
+              />
+              <Route 
+                path="/checkout" 
+                element={
+                  <CheckoutPage 
+                    cartItems={cartItems} 
+                    totalPrice={getTotalPrice()} 
+                    clearCart={clearCart}
+                  />
+                } 
+              />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

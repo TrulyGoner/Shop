@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/CheckoutPage.css';
 
 const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,25 +33,25 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
   const validateForm = () => {
     const newErrors = {};
     
-    if (!formData.name.trim()) newErrors.name = 'Требуется имя';
-    if (!formData.email.trim()) newErrors.email = 'Требуется email';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Некорректный email';
+    if (!formData.name.trim()) newErrors.name = `${t('fullName')} ${t('requiredField')}`;
+    if (!formData.email.trim()) newErrors.email = `Email ${t('requiredField')}`;
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = t('invalidEmail');
     
-    if (!formData.phone.trim()) newErrors.phone = 'Требуется телефон';
-    if (!formData.address.trim()) newErrors.address = 'Требуется адрес';
+    if (!formData.phone.trim()) newErrors.phone = `${t('phone')} ${t('requiredField')}`;
+    if (!formData.address.trim()) newErrors.address = `${t('address')} ${t('requiredField')}`;
     
-    if (!formData.cardNumber.trim()) newErrors.cardNumber = 'Требуется номер карты';
+    if (!formData.cardNumber.trim()) newErrors.cardNumber = `${t('cardNumber')} ${t('requiredField')}`;
     else if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) 
-      newErrors.cardNumber = 'Некорректный номер карты';
+      newErrors.cardNumber = t('invalidCard');
     
-    if (!formData.cardHolder.trim()) newErrors.cardHolder = 'Требуется имя владельца';
+    if (!formData.cardHolder.trim()) newErrors.cardHolder = `${t('cardHolder')} ${t('requiredField')}`;
     
-    if (!formData.expiry.trim()) newErrors.expiry = 'Требуется срок действия';
+    if (!formData.expiry.trim()) newErrors.expiry = `${t('expiry')} ${t('requiredField')}`;
     else if (!/^\d{2}\/\d{2}$/.test(formData.expiry)) 
-      newErrors.expiry = 'Формат ММ/ГГ';
+      newErrors.expiry = t('invalidFormat');
     
-    if (!formData.cvv.trim()) newErrors.cvv = 'Требуется CVV';
-    else if (!/^\d{3}$/.test(formData.cvv)) newErrors.cvv = 'Некорректный CVV';
+    if (!formData.cvv.trim()) newErrors.cvv = `CVV ${t('requiredField')}`;
+    else if (!/^\d{3}$/.test(formData.cvv)) newErrors.cvv = t('invalidCVV');
     
     return newErrors;
   };
@@ -62,8 +65,8 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
       return;
     }
     
-    // Имитация отправки заказа
-    alert('Заказ успешно оформлен!');
+    // Имитация отправки заказа - текст сообщения зависит от языка
+    alert(t('language') === 'ru' ? 'Заказ успешно оформлен!' : 'Order successfully placed!');
     clearCart();
     navigate('/');
   };
@@ -71,10 +74,10 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
   return (
     <div className="checkout-page container">
       <div className="checkout-header">
-        <h1 className="checkout-title">Оформление заказа</h1>
+        <h1 className="checkout-title">{t('checkoutTitle')}</h1>
         <Link to="/cart" className="back-link">
-          <img src="/images/back.svg" alt="Назад" />
-          <span>Вернуться в корзину</span>
+          <img src="/images/back.svg" alt={t('back')} />
+          <span>{t('backToCart')}</span>
         </Link>
       </div>
       
@@ -82,9 +85,9 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
         <div className="checkout-form-container">
           <form className="checkout-form" onSubmit={handleSubmit}>
             <div className="form-section">
-              <h2 className="section-title">Контактная информация</h2>
+              <h2 className="section-title">{t('contactInfo')}</h2>
               <div className="form-group">
-                <label htmlFor="name">ФИО</label>
+                <label htmlFor="name">{t('fullName')}</label>
                 <input
                   type="text"
                   id="name"
@@ -110,7 +113,7 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
               </div>
               
               <div className="form-group">
-                <label htmlFor="phone">Телефон</label>
+                <label htmlFor="phone">{t('phone')}</label>
                 <input
                   type="tel"
                   id="phone"
@@ -123,7 +126,7 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
               </div>
               
               <div className="form-group">
-                <label htmlFor="address">Адрес доставки</label>
+                <label htmlFor="address">{t('address')}</label>
                 <textarea
                   id="address"
                   name="address"
@@ -136,9 +139,9 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
             </div>
             
             <div className="form-section">
-              <h2 className="section-title">Платежная информация</h2>
+              <h2 className="section-title">{t('paymentInfo')}</h2>
               <div className="form-group">
-                <label htmlFor="cardNumber">Номер карты</label>
+                <label htmlFor="cardNumber">{t('cardNumber')}</label>
                 <input
                   type="text"
                   id="cardNumber"
@@ -152,7 +155,7 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
               </div>
               
               <div className="form-group">
-                <label htmlFor="cardHolder">Имя владельца</label>
+                <label htmlFor="cardHolder">{t('cardHolder')}</label>
                 <input
                   type="text"
                   id="cardHolder"
@@ -167,7 +170,7 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
               
               <div className="payment-row">
                 <div className="form-group small">
-                  <label htmlFor="expiry">Срок действия</label>
+                  <label htmlFor="expiry">{t('expiry')}</label>
                   <input
                     type="text"
                     id="expiry"
@@ -196,12 +199,12 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
               </div>
             </div>
             
-            <button type="submit" className="submit-button">Оплатить {totalPrice} ₽</button>
+            <button type="submit" className="submit-button">{t('pay')} {totalPrice} ₽</button>
           </form>
         </div>
         
         <div className="order-summary">
-          <h2 className="section-title">Ваш заказ</h2>
+          <h2 className="section-title">{t('yourOrder')}</h2>
           <div className="order-items">
             {cartItems.map(item => (
               <div key={item.id} className="order-item">
@@ -209,7 +212,7 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
                   <img src={item.img} alt={item.title} className="order-item-image" />
                   <div>
                     <p className="order-item-title">{item.title}</p>
-                    <p className="order-item-qty">Количество: {item.quantity}</p>
+                    <p className="order-item-qty">{t('quantity')}: {item.quantity}</p>
                   </div>
                 </div>
                 <p className="order-item-price">{item.price * item.quantity} ₽</p>
@@ -217,7 +220,7 @@ const CheckoutPage = ({ cartItems, totalPrice, clearCart }) => {
             ))}
           </div>
           <div className="order-total">
-            <span>Итого:</span>
+            <span>{t('total')}:</span>
             <span>{totalPrice} ₽</span>
           </div>
         </div>

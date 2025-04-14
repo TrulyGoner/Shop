@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CartItem from '../components/CartItem';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/CartPage.css';
 
 const CartPage = ({ cartItems, updateQuantity, removeFromCart, totalPrice }) => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   
   const handleCheckout = () => {
     navigate('/checkout');
@@ -13,18 +15,18 @@ const CartPage = ({ cartItems, updateQuantity, removeFromCart, totalPrice }) => 
   return (
     <div className="cart-page container">
       <div className="cart-header">
-        <h1 className="cart-title">Корзина</h1>
+        <h1 className="cart-title">{t('cart')}</h1>
         <Link to="/" className="back-link">
-          <img src="/images/back.svg" alt="Назад" />
-          <span>Назад</span>
+          <img src="/images/back.svg" alt={t('back')} />
+          <span>{t('back')}</span>
         </Link>
       </div>
       
       {cartItems.length === 0 ? (
         <div className="empty-cart">
-          <p>Ваша корзина пуста</p>
+          <p>{t('emptyCart')}</p>
           <Link to="/" className="continue-shopping">
-            Перейти к покупкам
+            {t('continueShopping')}
           </Link>
         </div>
       ) : (
@@ -42,11 +44,11 @@ const CartPage = ({ cartItems, updateQuantity, removeFromCart, totalPrice }) => 
           
           <div className="cart-summary">
             <div className="cart-total">
-              <span className="cart-total-label">ИТОГО</span>
+              <span className="cart-total-label">{t('total')}</span>
               <span className="cart-total-value">₽ {totalPrice}</span>
             </div>
             <button className="checkout-button" onClick={handleCheckout}>
-              Перейти к оформлению
+              {t('checkout')}
             </button>
           </div>
         </div>
