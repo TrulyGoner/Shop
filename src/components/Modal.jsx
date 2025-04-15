@@ -2,45 +2,51 @@ import React, { useEffect } from 'react';
 import '../styles/Modal.css';
 
 const Modal = ({ isOpen, onClose, children }) => {
+  // Закрытие модального окна по клавише Escape
   useEffect(() => {
-    // Блокировка прокрутки страницы при открытом модальном окне
+    const handleEscClose = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscClose);
+    }
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscClose);
+    };
+  }, [isOpen, onClose]);
+  
+  // Предотвращение прокрутки фона при открытом модальном окне
+  useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
     
-    // Очистка при размонтировании
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
   
-  // Обработка нажатия клавиши Escape для закрытия модального окна
-  useEffect(() => {
-    const handleEscapeKey = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    };
-    
-    document.addEventListener('keydown', handleEscapeKey);
-    return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
-    };
-  }, [isOpen, onClose]);
-  
   if (!isOpen) return null;
   
-  // Обработчик для предотвращения закрытия модального окна при клике внутри него
-  const handleModalClick = (e) => {
-    e.stopPropagation();
+  // Закрытие модального окна при клике на затемненный фон
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
   };
   
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={handleModalClick}>
-        <button className="modal-close" onClick={onClose}>×</button>
+    <div className="modal-backdrop" onClick={handleBackdropClick}>
+      <div className="modal-content">
+        <button className="modal-close" onClick={onClose}>
+          &times;
+        </button>
         {children}
       </div>
     </div>

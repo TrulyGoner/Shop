@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/Footer.css';
 
@@ -7,18 +8,20 @@ const Footer = () => {
   
   return (
     <footer className="footer">
-      <div className="container footer-container">
-        <div className="footer-logo">
-          <img src="/images/logo.svg" alt="QPICK" />
-        </div>
+      <div className="footer-container container">
+        <Link to="/" className="logo">
+          <img src="/images/logo.svg" alt="Logo" />
+        </Link>
+        
         <div className="footer-menu">
           <div className="footer-menu-column">
-            <a href="#" className="footer-link">{t('favorites')}</a>
-            <a href="#" className="footer-link">{t('cart')}</a>
-            <a href="#" className="footer-link">{t('contacts')}</a>
+            <Link to="/favorites" className="footer-link">{t('favorites')}</Link>
+            <Link to="/cart" className="footer-link">{t('cart')}</Link>
+            <Link to="/contacts" className="footer-link">{t('contacts')}</Link>
           </div>
+          
           <div className="footer-menu-column">
-            <a href="#" className="footer-link">{t('serviceTerms')}</a>
+            <Link to="/terms" className="footer-link">{t('serviceTerms')}</Link>
             <div className="language-selector">
               <span 
                 className={`language-item ${language === 'ru' ? 'active' : ''}`}
@@ -35,11 +38,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        
         <div className="social-links">
-          <a href="https://vk.com/neoflex_ru" target="_blank" rel="noopener noreferrer" className="social-link">
+          <a href="https://vk.com" target="_blank" rel="noopener noreferrer" className="social-link">
             <img src="/images/vk.svg" alt="VK" />
           </a>
-          <a href="https://t.me/neoflexcareers" target="_blank" rel="noopener noreferrer" className="social-link">
+          <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" className="social-link">
             <img src="/images/telegram.svg" alt="Telegram" />
           </a>
           <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="social-link">

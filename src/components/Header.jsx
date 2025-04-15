@@ -8,15 +8,17 @@ const Header = ({ cartCount }) => {
   
   return (
     <header className="header">
-      <div className="container header-container">
+      <div className="header-container container">
         <Link to="/" className="logo">
-          <img src="/images/logo.svg" alt="QPICK" />
+          <img src="/images/logo.svg" alt="Logo" />
         </Link>
+        
         <div className="header-actions">
-          <div className="action-icon">
+          <Link to="/favorites" className="action-icon">
             <img src="/images/favorite.svg" alt={t('favorites')} />
-          </div>
-          <Link to="/cart" className="action-icon cart-icon">
+          </Link>
+          
+          <Link to="/cart" className="action-icon">
             <img src="/images/cart.svg" alt={t('cart')} />
             {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
           </Link>
