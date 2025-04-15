@@ -1,12 +1,16 @@
-# React + Vite
+Данный проект представляет собой интернет-магазин наушников с адаптивным дизайном и многоязычным интерфейсом. Пользователи могут просматривать каталог товаров, добавлять товары в корзину, управлять количеством товаров и оформлять заказы.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Технический стек
 
-Currently, two official plugins are available:
+React
+React Router
+Context API (для управления состоянием языка)
+SessionStorage API (для сохранения данных корзины)
+CSS (с использованием модульного подхода)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+git clone https://github.com/TrulyGoner/Shop.git
+cd Shop
+npm install
+npm run dev
+```
