@@ -2,18 +2,34 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/ProductCard.css';
 
-const ProductCard = ({ product, onAddToCart, onShowDetails }) => {
+const ProductCard = ({ product, onAddToCart, onShowDetails, toggleFavorite, isInFavorites }) => {
   const { t } = useLanguage();
-  const { title, price, oldPrice, img, rating } = product;
+  const { title, price, oldPrice, img, rating, id } = product;
   
   const handleAddToCart = (e) => {
     e.stopPropagation(); // Предотвращает открытие деталей при клике на кнопку
     onAddToCart(product);
   };
   
+  const handleToggleFavorite = (e) => {
+    e.stopPropagation(); // Предотвращает открытие деталей при клике на кнопку
+    toggleFavorite(product);
+  };
+  
+  const isFavorite = isInFavorites(id);
+  
   return (
     <div className="product-card" onClick={() => onShowDetails(product)}>
       <div className="product-image">
+        <button 
+          className={`favorite-button ${isFavorite ? 'active' : ''}`} 
+          onClick={handleToggleFavorite}
+        >
+          <img 
+            src={isFavorite ? "/images/favorite-filled.svg" : "/images/favorite.svg"} 
+            alt={isFavorite ? t('removeFromFavorites') : t('addToFavorites')} 
+          />
+        </button>
         <img src={img} alt={title} />
       </div>
       

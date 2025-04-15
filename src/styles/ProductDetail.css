@@ -98,6 +98,35 @@
   background-color: #FF8C00;
 }
 
+.favorite-button-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.favorite-button-detail:hover {
+  background-color: #E5E5E5;
+}
+
+.favorite-button-detail.active {
+  background-color: #FFF0E0;
+}
+
+.favorite-button-detail img {
+  width: 20px;
+  height: 20px;
+}
+
+.favorite-button-detail.active img {
+  filter: none;
+}
+
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .product-detail {
@@ -108,5 +137,9 @@
   .product-detail-image {
     margin-right: 0;
     margin-bottom: 20px;
+  }
+  
+  .product-detail-actions {
+    flex-direction: column;
   }
 }

@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 // Объект с переводами
@@ -11,9 +12,13 @@ export const translations = {
     back: 'Назад',
     total: 'ИТОГО',
     emptyCart: 'Ваша корзина пуста',
+    emptyFavorites: 'У вас пока нет избранных товаров',
     continueShopping: 'Перейти к покупкам',
     checkout: 'Перейти к оформлению',
     serviceTerms: 'Условия сервиса',
+    addToFavorites: 'Добавить в избранное',
+    removeFromFavorites: 'Удалить из избранного',
+    noDescription: 'Описание отсутствует',
     
     // Названия категорий
     headphones: 'Наушники',
@@ -50,9 +55,13 @@ export const translations = {
     back: 'Back',
     total: 'TOTAL',
     emptyCart: 'Your cart is empty',
+    emptyFavorites: 'You don\'t have any favorite items yet',
     continueShopping: 'Continue shopping',
     checkout: 'Proceed to checkout',
     serviceTerms: 'Terms of Service',
+    addToFavorites: 'Add to favorites',
+    removeFromFavorites: 'Remove from favorites',
+    noDescription: 'No description available',
     
     // Названия категорий
     headphones: 'Headphones',

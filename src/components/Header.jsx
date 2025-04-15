@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/Header.css';
 
-const Header = ({ cartCount }) => {
+const Header = ({ cartCount, favoritesCount }) => {
   const { t } = useLanguage();
   
   return (
@@ -16,6 +16,7 @@ const Header = ({ cartCount }) => {
         <div className="header-actions">
           <Link to="/favorites" className="action-icon">
             <img src="/images/favorite.svg" alt={t('favorites')} />
+            {favoritesCount > 0 && <span className="favorites-count">{favoritesCount}</span>}
           </Link>
           
           <Link to="/cart" className="action-icon">

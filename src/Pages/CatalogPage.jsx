@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { products } from '../data';
 import '../styles/CatalogPage.css';
 
-const CatalogPage = ({ addToCart }) => {
+const CatalogPage = ({ addToCart, toggleFavorite, isInFavorites }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { t } = useLanguage();
@@ -35,6 +35,8 @@ const CatalogPage = ({ addToCart }) => {
               product={product} 
               onAddToCart={addToCart} 
               onShowDetails={handleShowDetails}
+              toggleFavorite={toggleFavorite}
+              isInFavorites={isInFavorites}
             />
           ))}
         </div>
@@ -49,6 +51,8 @@ const CatalogPage = ({ addToCart }) => {
               product={product} 
               onAddToCart={addToCart} 
               onShowDetails={handleShowDetails}
+              toggleFavorite={toggleFavorite}
+              isInFavorites={isInFavorites}
             />
           ))}
         </div>
@@ -60,6 +64,8 @@ const CatalogPage = ({ addToCart }) => {
             product={selectedProduct} 
             onAddToCart={addToCart}
             onClose={handleCloseModal}
+            toggleFavorite={toggleFavorite}
+            isInFavorites={isInFavorites}
           />
         </Modal>
       )}
